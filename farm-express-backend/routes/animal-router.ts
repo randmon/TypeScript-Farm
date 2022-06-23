@@ -37,5 +37,15 @@ animalRouter.delete('/:name', (req: Request, res: Response) => {
     });
 });
 
+animalRouter.post('/add-random', (req: Request, res: Response) => {
+    animalModel.addRandomAnimal((error: Error, animal: Animal) => {
+        if (error) {
+            res.status(500).json({status: 'error', message: error.message});
+        } else {
+            res.status(200).json(animal);
+        }
+    });
+});
+
 
 export { animalRouter };

@@ -1,4 +1,4 @@
-import { animals } from 'unique-names-generator';
+import { uniqueNamesGenerator, animals, names, NumberDictionary } from 'unique-names-generator';
 import { Animal } from '../types';
 
 const allAnimals: Animal[] = [
@@ -37,4 +37,17 @@ const deleteAnimal = (name: string, onResult: (error: Error) => void) => {
     }
 }
 
-export { getAllAnimals, addAnimal, deleteAnimal };
+const addRandomAnimal = (onResult: (error: Error, animal: Animal) => void) => {
+    const type = uniqueNamesGenerator({dictionaries: [animals]});
+    
+    const animal: Animal = {
+        name: uniqueNamesGenerator({dictionaries: [names]}),
+        type: type,
+        age: Number.parseInt(NumberDictionary.generate({ min: 1, max: 50 })[0]),
+        image: 'http://placehold.jp/8286c0/ffffff/400x300.png?text=%3D%5E._.%5E%3D%20%E2%88%AB'
+    };
+    allAnimals.push(animal);
+    onResult(null, animal);
+}
+
+export { getAllAnimals, addAnimal, deleteAnimal, addRandomAnimal };

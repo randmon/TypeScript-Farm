@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AnimalService from "../../../services/AnimalService";
-import { Animal, StatusMessage } from "../../../types";
+import { Animal, StatusMessage, Response } from "../../../types";
 import classNames from "classnames";
 
 const AnimalAdd: React.FC = () => {
@@ -16,14 +16,24 @@ const AnimalAdd: React.FC = () => {
             setStatusMessages([
                 { type: "success", message: `Animal ${nameInput} successfully added.` }
             ]);
-            setNameInput("");
-            setAgeInput(0);
-            setTypeInput("");
-            setImageInput("");
+        } catch (error: any) {
+            setStatusMessages([
+                { type: "error", message: error.response?.data.message }
+            ]);
+        }
+    };
+
+    const addRandom = async () => {
+        try {
+            const response = await AnimalService.addRandomAnimal();
+            console.log(response.data);
+            setStatusMessages([
+                { type: "success", message: `Animal ${response.data.animal?.name} successfully added.` }
+            ]);
 
         } catch (error: any) {
             setStatusMessages([
-                { type: "error", message: `Error adding animal ${nameInput}.` }
+                { type: "error", message: `Error adding animal.` }
             ]);
         }
     };
@@ -91,6 +101,8 @@ const AnimalAdd: React.FC = () => {
                     ))}
                 </ul>
             )}
+
+            <button className="btn btn-primary" onClick={addRandom}>Add Random</button>
 
             <form onSubmit={handleSubmit} className="p-0">
                 <div className="form-group mb-3">

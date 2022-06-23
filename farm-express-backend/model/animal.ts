@@ -17,14 +17,22 @@ const getAllAnimals = (onResult: (error: Error, allAnimals: Animal[]) => void) =
 };
 
 const addAnimal = (animal: Animal, onResult: (error: Error) => void) => {
-    if (animal.name && animal.type && animal.age && animal.image 
-        && animal.name.length > 0 && animal.type.length > 0 && animal.image.length > 0 && animal.age >= 0 
-        && allAnimals.findIndex(a => a.name === animal.name) === -1) {
+    if (!allFieldsPresent(animal)) {
+        onResult(new Error('All fields are required'));
+    } else if (allAnimals.find(a => a.name === animal.name)) {
+        onResult(new Error(`An animal with name ${animal.name} already exists`));
+    } else {
         allAnimals.push(animal);
         onResult(null);
-    } else {
-        onResult(new Error('Invalid animal'));
     }
+}
+
+function trimWhiteSpace(str: string): string {
+    return str.replace(/\s/g, '');
+}
+
+function allFieldsPresent(animal: Animal): boolean {
+    return animal.name && animal.type && animal.age && animal.image && trimWhiteSpace(animal.name).length > 0 && trimWhiteSpace(animal.type).length > 0 && trimWhiteSpace(animal.image).length > 0 && animal.age >= 0;
 }
 
 const deleteAnimal = (name: string, onResult: (error: Error) => void) => {

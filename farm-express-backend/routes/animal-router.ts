@@ -42,7 +42,7 @@ animalRouter.post('/add-random', (req: Request, res: Response) => {
         if (error) {
             res.status(500).json({status: 'error', message: error.message});
         } else {
-            res.status(200).json(animal);
+            res.status(200).json({status: 'success', animal});
         }
     });
 });

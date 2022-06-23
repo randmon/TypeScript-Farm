@@ -13,19 +13,15 @@ const AnimalOverview: React.FC = () => {
         getAnimals();
         setInterval(() => {
             getAnimals();
-        }, 3000);
+        }, 10000);
     }, []);
 
     const getAnimals = async () => {
-        const response: AxiosResponse<any> = await AnimalService.getAllAnimals();
         try {
-            if (response.status === 200) {
-                setAnimals(response.data);
-            } else {
-                console.log('Error');
-            }
-        } catch (error) {
-            console.log(error);
+            const response: AxiosResponse<Animal[]> = await AnimalService.getAllAnimals();
+            setAnimals(response.data);
+        } catch (error: any) {
+            console.log(error.message);
         }
     };
 

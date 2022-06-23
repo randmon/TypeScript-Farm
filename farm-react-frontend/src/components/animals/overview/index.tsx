@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Animal } from '../../../types';
+import { AxiosResponse } from 'axios';
+import AnimalCards from './animalCards';
+import AnimalTable from './animalTable';
+import AnimalService from '../../../services/AnimalService';
 
 const AnimalOverview: React.FC = () => {
 
@@ -11,22 +15,17 @@ const AnimalOverview: React.FC = () => {
 
     const getAnimals = async () => {
         // array with 2 cats
-        const animals: Animal[] = [
-            {
-                name: 'Kitty',
-                type: 'cat',
-                age: 2,
-                image: 'https://placekitten.com/400/300'
-            },
-            {
-                name: 'Freddie',
-                type: 'cat',
-                age: 1,
-                image: 'https://placekitten.com/800/600'
+        const response: AxiosResponse<any> = await AnimalService.getAllAnimals();
+        try {
+            if (response.status === 200) {
+                console.log(response.data);
+                setAnimals(response.data);
+            } else {
+                console.log('Error');
             }
-        ];
-
-        setAnimals(animals);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
 
@@ -34,23 +33,8 @@ const AnimalOverview: React.FC = () => {
         <>
             <h1>Overview</h1>
             <p>Animals are not yet available for adoption.</p>
-
-            <div className='row'>
-                {animals.map(animal => (
-                    <div key={animal.name} className='col-4 card m-3'>
-                        <img src={animal.image} alt={animal.name} className="card-img-top"/>
-                        <div className='card-body'>
-                            <h5 className='card-title'>{animal.name}</h5>
-                            <p className='card-text'>
-                                Type: {animal.type}
-                                <br />
-                                {animal.age === 1 ? `${animal.age} year old` : `${animal.age} years old`}
-                            </p>
-                        </div>
-                    </div>
-
-                ))}
-            </div>
+            {/* <AnimalTable animals={animals}/> */}
+            <AnimalCards animals={animals}/>
         </>
     );
 };

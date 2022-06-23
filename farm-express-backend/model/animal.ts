@@ -1,11 +1,11 @@
 import { Animal } from '../types';
 
 const allAnimals: Animal[] = [
-    { name: 'Albert', type: 'duck', age: 2 },
-    { name: 'Snowball', type: 'rabbit', age: 4 },
-    { name: 'Hen Solo', type: 'chicken', age: 3 },
-    { name: 'Charlie', type: 'canary', age: 1 },
-    { name: 'Teddy', type: 'dog', age: 6 },
+    { name: 'Albert', type: 'duck', age: 2, image: 'https://images.unsplash.com/photo-1526642295339-99f8b88a241b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80' },
+    { name: 'Snowball', type: 'rabbit', age: 4, image: 'https://images.unsplash.com/photo-1629898569904-669319348211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80' },
+    { name: 'Hen Solo', type: 'chicken', age: 3, image: 'https://images.unsplash.com/photo-1612170153139-6f881ff067e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80' },
+    { name: 'Charlie', type: 'canary', age: 1, image: 'https://images.unsplash.com/photo-1591198936750-16d8e15edb9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80' },
+    { name: 'Teddy', type: 'dog', age: 6, image: 'https://images.unsplash.com/photo-1561438774-1790fe271b8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80' },
 ];
 
 const getAllAnimals = (onResult: (error: Error, allAnimals: Animal[]) => void) => {

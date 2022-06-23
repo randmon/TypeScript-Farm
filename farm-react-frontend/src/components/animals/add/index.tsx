@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AnimalService from "../../../services/AnimalService";
 import { Animal, StatusMessage } from "../../../types";
 import classNames from "classnames";
 
 const AnimalAdd: React.FC = () => {
-
     const [nameInput, setNameInput] = useState<string>("");
     const [ageInput, setAgeInput] = useState<number>(0);
     const [typeInput, setTypeInput] = useState<string>("");
@@ -24,7 +23,6 @@ const AnimalAdd: React.FC = () => {
 
         } catch (error: any) {
             setStatusMessages([
-                ...statusMessages,
                 { type: "error", message: `Error adding animal ${nameInput}.` }
             ]);
         }
@@ -55,6 +53,21 @@ const AnimalAdd: React.FC = () => {
             addAnimal({ name: nameInput, type: typeInput, age: ageInput, image: imageInput });
         }
     };
+
+    // If the user has selected an image, display it.
+    // If not, display the placeholder image.
+    const displayImage = () => {
+        if (imageInput) {
+            return <img src={imageInput} alt="animal" width={500}/>;
+        } else {
+            return <p>You have not selected an image.</p>
+        }
+    }
+
+    useEffect(() => {
+        displayImage();
+    } , [imageInput]);
+
 
     return (
         <>
@@ -106,11 +119,11 @@ const AnimalAdd: React.FC = () => {
                 </div>
                 <input type="submit" value="Submit" className="btn btn-primary mt-2" />
             </form>
-            
-            {/* <div className="mt-5">
+
+            <div className="mt-5">
                 <h3>Selected image:</h3>
-                <img src={imageInput} alt="animal"/>
-            </div> */}
+                {displayImage()}
+            </div>
         </>
     );
 };

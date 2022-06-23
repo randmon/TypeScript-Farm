@@ -58,4 +58,13 @@ const addRandomAnimal = (onResult: (error: Error, animal: Animal) => void) => {
     onResult(null, animal);
 }
 
-export { getAllAnimals, addAnimal, deleteAnimal, addRandomAnimal };
+const getAverageAge = (onResult: (error: Error, averageAge: number) => void) => {
+    if (allAnimals.length === 0) {
+        onResult(new Error('No animals found'), -1);
+    } else {
+        const averageAge = allAnimals.reduce((acc, curr) => acc + curr.age, 0) / allAnimals.length;
+        onResult(null, averageAge);
+    }
+}
+
+export { getAllAnimals, addAnimal, deleteAnimal, addRandomAnimal, getAverageAge };

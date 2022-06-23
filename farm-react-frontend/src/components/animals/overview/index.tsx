@@ -25,7 +25,6 @@ const AnimalOverview: React.FC = () => {
         }
     };
 
-
     return (
         <>
             <h1>Overview</h1>

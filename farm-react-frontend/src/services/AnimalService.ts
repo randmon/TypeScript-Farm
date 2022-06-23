@@ -9,11 +9,14 @@ const addRandomAnimal = () => axios.post<Response>('/animals/add-random');
 
 const deleteAnimal = (name: string) => axios.delete<Response>(`/animals/${name}`);
 
+const getAverageAge = () => axios.get<number>('/animals/average-age');
+
 const AnimalService = {
     getAllAnimals,
     addAnimal,
     addRandomAnimal,
     deleteAnimal,
+    getAverageAge
 };
 
 export default AnimalService;

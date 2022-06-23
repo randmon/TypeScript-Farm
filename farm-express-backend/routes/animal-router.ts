@@ -47,5 +47,14 @@ animalRouter.post('/add-random', (req: Request, res: Response) => {
     });
 });
 
+animalRouter.get('/average-age', (req: Request, res: Response) => {
+    animalModel.getAverageAge((error: Error, averageAge: number) => {
+        if (error) {
+            res.status(500).json({status: 'error', message: error.message});
+        } else {
+            res.status(200).json({"average": averageAge});
+        }
+    });
+});
 
 export { animalRouter };

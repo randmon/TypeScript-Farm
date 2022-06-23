@@ -1,6 +1,39 @@
+import { AxiosResponse } from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import AnimalService from '../../services/AnimalService';
 
 const Home: React.FC = () => {
+    const [averageAge, setAverageAge] = useState(-1);
+
+    useEffect(() => {
+        getAverageAge();
+
+        setInterval(() => {
+            getAverageAge();
+        }, 3000);
+    }, []);
+
+    // get average age of all animals
+    const getAverageAge = async () => {
+        try {
+            const result: AxiosResponse<any> = await AnimalService.getAverageAge();
+            setAverageAge(Math.round(result.data.average * 100) / 100);
+        } catch (error: any) {
+            setAverageAge(-1);
+        }
+    };
+
+    const getAgeText = () => {
+        if (averageAge === -1) {
+            return 'No animals found';
+        } else if (averageAge === 1) {
+            return '1 year';
+        } else {
+            return `${averageAge} years`;
+        }
+    };
+
     return (
         <>
         <div className="jumbotron">
@@ -10,6 +43,8 @@ const Home: React.FC = () => {
             </p>
             <hr className="my-4" />
             <p>Animals are now available for adoption!</p>
+            {/* If average age is 1, write singular */}
+            <p>Average age of all animals: {getAgeText()}</p>
             <Link className="btn btn-primary btn-lg" to="/animals" role="button">See all animals</Link>
         </div>
 

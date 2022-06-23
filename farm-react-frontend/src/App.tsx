@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import logo from './logo.svg';
 import Home from './components/home';
+import AnimalOverivew from './components/animals/overview';
 
 
 console.log(logo);
@@ -30,10 +31,10 @@ function App() {
         </ul>
     </nav>
 
-    <main className="container mt-5">
+    <main className="container mt-2">
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="animals" element={<Animals />} /> */}
+        <Route path="animals" element={<AnimalOverivew />} />
         {/* <Route path="add" element={<Add />} /> */}
       </Routes>
     </main>

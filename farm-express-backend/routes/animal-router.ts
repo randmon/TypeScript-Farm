@@ -14,4 +14,16 @@ animalRouter.get('/', (req: Request, res: Response) => {
     });
 });
 
+animalRouter.post('/', (req: Request, res: Response) => {
+    const animal: Animal = req.body;
+    animalModel.addAnimal(animal, (error: Error) => {
+        if (error) {
+            res.status(500).json({status: 'error', message: error.message});
+        } else {
+            res.status(200).json({status: 'success'});
+        }
+    });
+});
+
+
 export { animalRouter };

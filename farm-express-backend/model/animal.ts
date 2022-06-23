@@ -1,3 +1,4 @@
+import { animals } from 'unique-names-generator';
 import { Animal } from '../types';
 
 const allAnimals: Animal[] = [
@@ -12,4 +13,15 @@ const getAllAnimals = (onResult: (error: Error, allAnimals: Animal[]) => void) =
     onResult(null, allAnimals);
 };
 
-export { getAllAnimals };
+const addAnimal = (animal: Animal, onResult: (error: Error) => void) => {
+    if (animal.name && animal.type && animal.age && animal.image 
+        && animal.name.length > 0 && animal.type.length > 0 && animal.image.length > 0 && animal.age > 0 
+        && allAnimals.findIndex(a => a.name === animal.name) === -1) {
+        allAnimals.push(animal);
+        onResult(null);
+    } else {
+        onResult(new Error('Invalid animal'));
+    }
+}
+
+export { getAllAnimals, addAnimal };

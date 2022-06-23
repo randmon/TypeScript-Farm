@@ -25,5 +25,17 @@ animalRouter.post('/', (req: Request, res: Response) => {
     });
 });
 
+// delete animal by name
+animalRouter.delete('/:name', (req: Request, res: Response) => {
+    const name: string = req.params.name;
+    animalModel.deleteAnimal(name, (error: Error) => {
+        if (error) {
+            res.status(500).json({status: 'error', message: error.message});
+        } else {
+            res.status(200).json({status: 'success'});
+        }
+    });
+});
+
 
 export { animalRouter };

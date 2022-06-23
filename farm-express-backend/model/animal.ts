@@ -24,4 +24,14 @@ const addAnimal = (animal: Animal, onResult: (error: Error) => void) => {
     }
 }
 
-export { getAllAnimals, addAnimal };
+const deleteAnimal = (name: string, onResult: (error: Error) => void) => {
+    const index = allAnimals.findIndex(a => a.name === name);
+    if (index === -1) {
+        onResult(new Error('Animal not found'));
+    } else {
+        allAnimals.splice(index, 1);
+        onResult(null);
+    }
+}
+
+export { getAllAnimals, addAnimal, deleteAnimal };

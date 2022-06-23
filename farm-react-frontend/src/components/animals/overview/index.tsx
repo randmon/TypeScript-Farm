@@ -33,8 +33,13 @@ const AnimalOverview: React.FC = () => {
         <>
             <h1>Overview</h1>
             <p>Animals are not yet available for adoption.</p>
+
+            {/* If there are animals, show them */}
+            {animals.length > 0 ? 
+                <AnimalCards animals={animals} /> 
+                :
+                <p className='alert alert-secondary'>No animals found.</p>}
             {/* <AnimalTable animals={animals}/> */}
-            <AnimalCards animals={animals}/>
         </>
     );
 };

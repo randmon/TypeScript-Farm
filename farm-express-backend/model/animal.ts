@@ -67,4 +67,22 @@ const getAverageAge = (onResult: (error: Error, averageAge: number) => void) => 
     }
 }
 
-export { getAllAnimals, addAnimal, deleteAnimal, addRandomAnimal, getAverageAge };
+const getDetails = (onResult: (error: Error, details: object) => void) => {
+    if (allAnimals.length === 0) {
+        onResult(new Error('No animals found'), null);
+    } else {
+        // oldest animal
+        const oldest = allAnimals.reduce((acc, curr) => curr.age > acc.age ? curr : acc, allAnimals[0]);
+        // youngest animal
+        const youngest = allAnimals.reduce((acc, curr) => curr.age < acc.age ? curr : acc, allAnimals[0]);
+        // animal with the longest name
+        const longestName = allAnimals.reduce((acc, curr) => curr.name.length > acc.name.length ? curr : acc, allAnimals[0]);
+        onResult(null, { 
+            "Youngest animal": youngest,
+            "Oldest animal": oldest,
+            "Longest name": longestName });
+    }
+}
+
+
+export { getAllAnimals, addAnimal, deleteAnimal, addRandomAnimal, getAverageAge, getDetails };

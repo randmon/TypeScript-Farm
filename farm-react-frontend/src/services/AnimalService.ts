@@ -11,12 +11,15 @@ const deleteAnimal = (name: string) => axios.delete<Response>(`/animals/${name}`
 
 const getAverageAge = () => axios.get<number>('/animals/average-age');
 
+const getAnimalDetails = () => axios.get<object>('/animals/details');
+
 const AnimalService = {
     getAllAnimals,
     addAnimal,
     addRandomAnimal,
     deleteAnimal,
-    getAverageAge
+    getAverageAge,
+    getAnimalDetails,
 };
 
 export default AnimalService;

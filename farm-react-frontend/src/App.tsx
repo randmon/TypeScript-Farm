@@ -12,7 +12,7 @@ function App() {
   return (
     <>
     {/* Navbar */}
-    <nav className="navbar navbar-light bg-light">
+    <nav className="navbar navbar-dark bg-dark">
       <a className="navbar-brand" href="/">
         <img src={logo} width="50" height="50" className="d-inline-block" alt="logo" />
         <span className="navbar-brand mb-0 h1 text-info">React Farm</span>

@@ -9,7 +9,7 @@ const Home: React.FC = () => {
                 In this animal farm, we have all kinds of animals. You can learn more about each animal and add your own.
             </p>
             <hr className="my-4" />
-            <p>Animals are not yet available for adoption.</p>
+            <p>Animals are now available for adoption!</p>
             <Link className="btn btn-primary btn-lg" to="/animals" role="button">See all animals</Link>
         </div>
 

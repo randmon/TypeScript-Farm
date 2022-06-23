@@ -4,7 +4,7 @@ import './App.css';
 import logo from './logo.svg';
 import Home from './components/home';
 import AnimalOverivew from './components/animals/overview';
-
+import AnimalAdd from './components/animals/add';
 
 console.log(logo);
 
@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="animals" element={<AnimalOverivew />} />
-        {/* <Route path="add" element={<Add />} /> */}
+        <Route path="add" element={<AnimalAdd />} />
       </Routes>
     </main>
     </>

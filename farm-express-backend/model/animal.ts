@@ -15,7 +15,7 @@ const getAllAnimals = (onResult: (error: Error, allAnimals: Animal[]) => void) =
 
 const addAnimal = (animal: Animal, onResult: (error: Error) => void) => {
     if (animal.name && animal.type && animal.age && animal.image 
-        && animal.name.length > 0 && animal.type.length > 0 && animal.image.length > 0 && animal.age > 0 
+        && animal.name.length > 0 && animal.type.length > 0 && animal.image.length > 0 && animal.age >= 0 
         && allAnimals.findIndex(a => a.name === animal.name) === -1) {
         allAnimals.push(animal);
         onResult(null);

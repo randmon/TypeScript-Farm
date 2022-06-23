@@ -1,27 +1,43 @@
+import { Routes, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import logo from './logo.svg';
+import Home from './components/home';
+
 
 console.log(logo);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {/* Navbar */}
+    <nav className="navbar navbar-light bg-light">
+      <a className="navbar-brand" href="/">
+        <img src={logo} width="50" height="50" className="d-inline-block" alt="logo" />
+        <span className="navbar-brand mb-0 h1 text-info">React Farm</span>
+      </a>
+
+        <ul className="nav">
+          <li className="nav-item active">
+            <Link className="nav-link" to="/">Home</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/animals">Animals</Link>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/add">Add</a>
+          </li>
+        </ul>
+    </nav>
+
+    <main className="container mt-5">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="animals" element={<Animals />} /> */}
+        {/* <Route path="add" element={<Add />} /> */}
+      </Routes>
+    </main>
+    </>
   );
 }
 

@@ -76,11 +76,19 @@ const getDetails = (onResult: (error: Error, details: object) => void) => {
         // youngest animal
         const youngest = allAnimals.reduce((acc, curr) => curr.age < acc.age ? curr : acc, allAnimals[0]);
         // animal with the longest name
-        const longestName = allAnimals.reduce((acc, curr) => curr.name.length > acc.name.length ? curr : acc, allAnimals[0]);
+        const longestName = allAnimals.reduce((acc, curr) => curr.name.length > acc.name.length ? curr : acc, allAnimals[0]); 
+        // animal with the shortest name
+        const shortestName = allAnimals.reduce((acc, curr) => curr.name.length < acc.name.length ? curr : acc, allAnimals[0]);
+        // latest animal added
+        const latest = allAnimals[allAnimals.length - 1];
+
         onResult(null, { 
             "Youngest animal": youngest,
             "Oldest animal": oldest,
-            "Longest name": longestName });
+            "Longest name": longestName,
+            "Shortest name": shortestName,
+            "Latest animal added": latest
+        });
     }
 }
 
